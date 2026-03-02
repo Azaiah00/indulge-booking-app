@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Connection URL is set in prisma.config.ts (Prisma 7+)
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          Role      @default(CLIENT)
+  phone         String?
+  appointments  Appointment[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+enum Role {
+  CLIENT
+  ADMIN
+}
+
+model Service {
+  id          String        @id @default(cuid())
+  name        String
+  description String?
+  price       Decimal       @db.Decimal(10, 2)
+  duration    Int           // Duration in minutes
+  appointments Appointment[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Appointment {
+  id          String            @id @default(cuid())
+  userId      String
+  user        User              @relation(fields: [userId], references: [id])
+  serviceId   String
+  service     Service           @relation(fields: [serviceId], references: [id])
+  startTime   DateTime
+  endTime     DateTime
+  status      AppointmentStatus @default(PENDING)
+  stripeId    String?           // For payment tracking
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+model Blockout {
+  id          String    @id @default(cuid())
+  title       String    // e.g., "Lunch Break", "Vacation"
+  startTime   DateTime
+  endTime     DateTime
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
