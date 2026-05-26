@@ -26,7 +26,7 @@ export default async function CalendarPage() {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <h1 className="text-3xl font-light tracking-tight text-gray-900 mb-8 uppercase">
+      <h1 className="text-2xl sm:text-3xl font-light tracking-tight text-gray-900 mb-6 sm:mb-8 uppercase">
         Master <span className="italic font-serif text-[var(--color-primary)]">Calendar</span>
       </h1>
 

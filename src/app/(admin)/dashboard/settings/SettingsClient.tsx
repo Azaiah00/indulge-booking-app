@@ -90,26 +90,26 @@ export default function SettingsClient({
       .toUpperCase() || "EM";
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
       {/* Page header */}
       <div>
-        <h1 className="text-3xl font-light tracking-tight text-gray-900 uppercase">
+        <h1 className="text-2xl sm:text-3xl font-light tracking-tight text-gray-900 uppercase">
           Settings
         </h1>
-        <p className="text-gray-500 mt-2">
+        <p className="text-gray-500 mt-2 text-sm sm:text-base">
           Manage your account, salon details, and booking preferences.
         </p>
       </div>
 
       {/* ── Profile ── */}
       <Card className="border-gray-200 shadow-sm">
-        <CardHeader className="flex flex-row items-center gap-4 pb-4">
+        <CardHeader className="flex flex-row items-center gap-3 sm:gap-4 pb-4">
           <SectionIcon icon={User} />
-          <div>
-            <CardTitle className="text-lg uppercase tracking-wider text-gray-800">
+          <div className="min-w-0">
+            <CardTitle className="text-base sm:text-lg uppercase tracking-wider text-gray-800">
               Your Profile
             </CardTitle>
-            <p className="text-sm text-gray-500 mt-1">Admin account details</p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-1">Admin account details</p>
           </div>
         </CardHeader>
         <CardContent>
@@ -182,13 +182,13 @@ export default function SettingsClient({
 
       {/* ── Password ── */}
       <Card className="border-gray-200 shadow-sm">
-        <CardHeader className="flex flex-row items-center gap-4 pb-4">
+        <CardHeader className="flex flex-row items-center gap-3 sm:gap-4 pb-4">
           <SectionIcon icon={Shield} />
-          <div>
-            <CardTitle className="text-lg uppercase tracking-wider text-gray-800">
+          <div className="min-w-0">
+            <CardTitle className="text-base sm:text-lg uppercase tracking-wider text-gray-800">
               Security
             </CardTitle>
-            <p className="text-sm text-gray-500 mt-1">Change your login password</p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-1">Change your login password</p>
           </div>
         </CardHeader>
         <CardContent>
@@ -250,13 +250,13 @@ export default function SettingsClient({
 
       {/* ── Business Info ── */}
       <Card className="border-gray-200 shadow-sm">
-        <CardHeader className="flex flex-row items-center gap-4 pb-4">
+        <CardHeader className="flex flex-row items-center gap-3 sm:gap-4 pb-4">
           <SectionIcon icon={Building2} />
-          <div>
-            <CardTitle className="text-lg uppercase tracking-wider text-gray-800">
+          <div className="min-w-0">
+            <CardTitle className="text-base sm:text-lg uppercase tracking-wider text-gray-800">
               Business Info
             </CardTitle>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-xs sm:text-sm text-gray-500 mt-1">
               Salon details shown on your website and booking confirmations
             </p>
           </div>
@@ -382,13 +382,13 @@ export default function SettingsClient({
 
       {/* ── Booking Rules ── */}
       <Card className="border-gray-200 shadow-sm">
-        <CardHeader className="flex flex-row items-center gap-4 pb-4">
+        <CardHeader className="flex flex-row items-center gap-3 sm:gap-4 pb-4">
           <SectionIcon icon={Clock} />
-          <div>
-            <CardTitle className="text-lg uppercase tracking-wider text-gray-800">
+          <div className="min-w-0">
+            <CardTitle className="text-base sm:text-lg uppercase tracking-wider text-gray-800">
               Hours & Booking
             </CardTitle>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-xs sm:text-sm text-gray-500 mt-1">
               Controls which time slots clients can book online
             </p>
           </div>

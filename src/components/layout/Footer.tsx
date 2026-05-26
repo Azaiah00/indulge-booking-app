@@ -4,11 +4,11 @@ import Link from "next/link";
 // Footer with real Indulge Salon & Spa info (Eboni Mayo, Richmond, VA)
 export function Footer() {
   return (
-    <footer className="bg-[var(--color-primary)] text-white py-16 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div className="col-span-1 md:col-span-2">
-          <img src="/images/logo.png" alt="Indulge Salon & Spa" className="h-12 w-auto object-contain mb-4 filter brightness-0 invert" />
-          <p className="text-white/80 max-w-sm mb-4 leading-relaxed">
+    <footer className="bg-[var(--color-primary)] text-white py-12 sm:py-16 px-6 md:px-12">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
+        <div className="col-span-1 sm:col-span-2">
+          <img src="/images/logo.png" alt="Indulge Salon & Spa" className="h-10 sm:h-12 w-auto object-contain mb-4 filter brightness-0 invert" />
+          <p className="text-white/80 max-w-sm mb-4 leading-relaxed text-sm sm:text-base">
             Founded in 2005 by Eboni Mayo, with over 25 years of professional
             experience in the beauty industry. Pampering the mind, body, and
             spirit of Richmond, VA.
@@ -66,9 +66,9 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/20 flex flex-col md:flex-row items-center justify-between text-sm text-white/60">
-        <p>&copy; {new Date().getFullYear()} Indulge Salon & Spa. All rights reserved.</p>
-        <div className="flex gap-4 mt-4 md:mt-0">
+      <div className="max-w-7xl mx-auto mt-10 sm:mt-16 pt-6 sm:pt-8 border-t border-white/20 flex flex-col md:flex-row items-center justify-between text-xs sm:text-sm text-white/60 gap-3">
+        <p className="text-center md:text-left">&copy; {new Date().getFullYear()} Indulge Salon & Spa. All rights reserved.</p>
+        <div className="flex gap-4">
           <Link href="/terms" className="hover:text-white transition-colors">
             Terms of Service
           </Link>

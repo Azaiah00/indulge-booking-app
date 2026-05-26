@@ -81,17 +81,17 @@ export default function BookingClient({ services }: { services: any[] }) {
   };
 
   return (
-    <div className="min-h-screen relative pt-32 pb-20 px-6">
+    <div className="min-h-screen relative pt-28 md:pt-32 pb-16 md:pb-20 px-4 sm:px-6">
       <FluidBackground />
-      
+
       <div className="relative z-10 max-w-4xl mx-auto">
-        <h1 className="text-4xl font-light tracking-tight text-[var(--color-foreground)] mb-12 text-center uppercase">
+        <h1 className="text-3xl sm:text-4xl font-light tracking-tight text-[var(--color-foreground)] mb-8 md:mb-12 text-center uppercase">
           Book Your <span className="italic font-serif text-[var(--color-primary)]">Experience</span>
         </h1>
 
         {/* Stepper */}
-        <div className="flex justify-center mb-12">
-          <div className="flex items-center gap-4 text-sm font-medium uppercase tracking-wider">
+        <div className="flex justify-center mb-8 md:mb-12">
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs sm:text-sm font-medium uppercase tracking-wider">
             <span className={step === "SERVICE" ? "text-[var(--color-primary)] font-bold" : "text-gray-400"}>1. Service</span>
             <span className="text-gray-300">/</span>
             <span className={step === "DATE" ? "text-[var(--color-primary)] font-bold" : "text-gray-400"}>2. Date & Time</span>
@@ -101,14 +101,14 @@ export default function BookingClient({ services }: { services: any[] }) {
         </div>
 
         {step === "SERVICE" && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             {services.map(svc => (
-              <div 
+              <div
                 key={svc.id}
                 onClick={() => handleServiceSelect(svc.id)}
-                className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm cursor-pointer hover:border-[var(--color-primary)] hover:shadow-md transition-all group"
+                className="bg-white p-5 sm:p-6 rounded-xl border border-gray-100 shadow-sm cursor-pointer hover:border-[var(--color-primary)] hover:shadow-md transition-all group active:scale-[0.98]"
               >
-                <h3 className="text-lg font-medium text-gray-900 mb-2 group-hover:text-[var(--color-primary)] transition-colors">{svc.name}</h3>
+                <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-2 group-hover:text-[var(--color-primary)] transition-colors">{svc.name}</h3>
                 <div className="flex justify-between items-center text-sm text-gray-500">
                   <span>{svc.duration}</span>
                   <span className="font-semibold text-gray-700">{svc.price}</span>
@@ -121,7 +121,7 @@ export default function BookingClient({ services }: { services: any[] }) {
         {step === "DATE" && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="mb-6 flex items-center justify-between">
-              <h2 className="text-xl font-light uppercase">Select Date & Time</h2>
+              <h2 className="text-lg sm:text-xl font-light uppercase">Select Date & Time</h2>
               <button onClick={() => setStep("SERVICE")} className="text-sm text-gray-500 hover:text-black uppercase tracking-wider">&larr; Back</button>
             </div>
             <Calendar serviceId={selectedService!} onSelectSlot={handleDateSelect} />
@@ -129,21 +129,21 @@ export default function BookingClient({ services }: { services: any[] }) {
         )}
 
         {step === "CONFIRM" && selectedDateTime && selectedService && (
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 bg-white p-8 rounded-xl border border-gray-100 shadow-sm max-w-2xl mx-auto">
-            <h2 className="text-2xl font-light uppercase text-center mb-8">Confirm Details</h2>
-            
-            <div className="space-y-6 mb-8">
-              <div className="flex justify-between items-center border-b border-gray-100 pb-4">
-                <span className="text-gray-500 uppercase tracking-wider text-sm">Service</span>
-                <span className="font-medium text-gray-900">{services.find(s => s.id === selectedService)?.name}</span>
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 bg-white p-5 sm:p-8 rounded-xl border border-gray-100 shadow-sm max-w-2xl mx-auto">
+            <h2 className="text-xl sm:text-2xl font-light uppercase text-center mb-6 sm:mb-8">Confirm Details</h2>
+
+            <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
+              <div className="flex justify-between items-center border-b border-gray-100 pb-3 sm:pb-4 gap-3">
+                <span className="text-gray-500 uppercase tracking-wider text-xs sm:text-sm shrink-0">Service</span>
+                <span className="font-medium text-gray-900 text-right">{services.find(s => s.id === selectedService)?.name}</span>
               </div>
-              <div className="flex justify-between items-center border-b border-gray-100 pb-4">
-                <span className="text-gray-500 uppercase tracking-wider text-sm">Date</span>
-                <span className="font-medium text-gray-900">{format(selectedDateTime.date, "MMMM d, yyyy")}</span>
+              <div className="flex justify-between items-center border-b border-gray-100 pb-3 sm:pb-4 gap-3">
+                <span className="text-gray-500 uppercase tracking-wider text-xs sm:text-sm shrink-0">Date</span>
+                <span className="font-medium text-gray-900 text-right">{format(selectedDateTime.date, "MMMM d, yyyy")}</span>
               </div>
-              <div className="flex justify-between items-center border-b border-gray-100 pb-4">
-                <span className="text-gray-500 uppercase tracking-wider text-sm">Time</span>
-                <span className="font-medium text-gray-900">{selectedDateTime.time}</span>
+              <div className="flex justify-between items-center border-b border-gray-100 pb-3 sm:pb-4 gap-3">
+                <span className="text-gray-500 uppercase tracking-wider text-xs sm:text-sm shrink-0">Time</span>
+                <span className="font-medium text-gray-900 text-right">{selectedDateTime.time}</span>
               </div>
             </div>
 

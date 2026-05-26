@@ -75,7 +75,7 @@ export default function Home() {
             <p className="text-xs uppercase tracking-[0.4em] text-[var(--color-primary)] mb-4">
               Richmond, Virginia · Since 2005
             </p>
-            <h1 className="text-5xl md:text-7xl font-light tracking-tight text-[var(--color-foreground)] mb-6 uppercase">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-light tracking-tight text-[var(--color-foreground)] mb-6 uppercase">
               Imagine. <br />
               <span className="italic font-serif text-[var(--color-primary)]">
                 Inspire. Invigorate.
@@ -87,7 +87,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="text-lg md:text-xl text-[var(--color-foreground)]/80 mb-10 font-light max-w-2xl mx-auto"
+            className="text-base sm:text-lg md:text-xl text-[var(--color-foreground)]/80 mb-10 font-light max-w-2xl mx-auto"
           >
             Pampering the mind, body, and spirit. Professional nail, waxing,
             and detox services from Eboni Mayo and the Indulge team.
@@ -123,11 +123,11 @@ export default function Home() {
       {/* SERVICES */}
       <section
         id="services"
-        className="py-32 px-6 md:px-12 bg-white"
+        className="py-20 md:py-32 px-6 md:px-12 bg-white"
         ref={servicesRef}
       >
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
+          <div className="text-center mb-12 md:mb-20">
             <h2 className="text-3xl md:text-5xl font-light tracking-tight text-[var(--color-foreground)] mb-4 uppercase">
               Our <span className="italic font-serif text-[var(--color-primary)]">Services</span>
             </h2>
@@ -137,7 +137,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {SERVICE_CATEGORIES.map((service, idx) => (
               <Card
                 key={idx}
@@ -168,13 +168,13 @@ export default function Home() {
       </section>
 
       {/* ABOUT EBONI */}
-      <section id="about" className="py-32 px-6 md:px-12 bg-[#faf8f5]">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div className="order-2 md:order-1 h-[600px] bg-[var(--color-primary)]/15 rounded-2xl overflow-hidden relative shadow-lg border border-black/5">
-            <img 
-              src="/images/eboni.png" 
-              alt="Eboni Mayo" 
-              className="absolute inset-0 w-full h-full object-cover object-center" 
+      <section id="about" className="py-20 md:py-32 px-6 md:px-12 bg-[#faf8f5]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+          <div className="order-2 md:order-1 h-[400px] sm:h-[500px] md:h-[600px] bg-[var(--color-primary)]/15 rounded-2xl overflow-hidden relative shadow-lg border border-black/5">
+            <img
+              src="/images/eboni.png"
+              alt="Eboni Mayo"
+              className="absolute inset-0 w-full h-full object-cover object-center"
             />
           </div>
           <div className="order-1 md:order-2">
@@ -184,12 +184,12 @@ export default function Home() {
             <h2 className="text-3xl md:text-5xl font-light tracking-tight text-[var(--color-foreground)] mb-6 uppercase">
               Eboni <span className="italic font-serif text-[var(--color-primary)]">Mayo</span>
             </h2>
-            <p className="text-[var(--color-foreground)]/80 mb-4 leading-relaxed text-lg font-light">
+            <p className="text-[var(--color-foreground)]/80 mb-4 leading-relaxed text-base md:text-lg font-light">
               Indulge Salon & Spa opened January 2005 under the dedicated efforts
               of Eboni Mayo — former co-owner of His & Hers Nail Spa & Academy
               and a beauty professional with over 25 years of experience.
             </p>
-            <p className="text-[var(--color-foreground)]/80 mb-8 leading-relaxed text-lg font-light">
+            <p className="text-[var(--color-foreground)]/80 mb-8 leading-relaxed text-base md:text-lg font-light">
               We believe beauty starts from the inside. Our team is here to
               pamper your mind, body, and spirit with multicultural,
               high-quality, professional service.
@@ -198,7 +198,7 @@ export default function Home() {
               <Button
                 size="lg"
                 variant="secondary"
-                className="uppercase tracking-widest text-sm"
+                className="uppercase tracking-widest text-sm w-full sm:w-auto"
               >
                 Book With Eboni
               </Button>
@@ -208,33 +208,33 @@ export default function Home() {
       </section>
 
       {/* MEMBER PERKS BANNER */}
-      <section className="py-24 px-6 md:px-12 bg-white">
-        <div className="max-w-4xl mx-auto text-center bg-[var(--color-primary)] text-white rounded-3xl p-12 md:p-16 relative overflow-hidden">
+      <section className="py-16 md:py-24 px-6 md:px-12 bg-white">
+        <div className="max-w-4xl mx-auto text-center bg-[var(--color-primary)] text-white rounded-3xl p-8 sm:p-12 md:p-16 relative overflow-hidden">
           <p className="text-xs uppercase tracking-[0.4em] text-white/70 mb-4">
             Become A Member — It's Free
           </p>
-          <h3 className="text-3xl md:text-4xl font-light uppercase mb-4">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-light uppercase mb-4">
             Book as a guest, <em className="italic font-serif">or join the family</em>
           </h3>
-          <p className="text-white/80 max-w-2xl mx-auto mb-8 leading-relaxed">
+          <p className="text-white/80 max-w-2xl mx-auto mb-8 leading-relaxed text-sm sm:text-base">
             You can book any service without creating an account. But our free
             members get appointment reminders, exclusive discounts, wellness
             tips, easy rescheduling, and early access to new services.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/book">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
+            <Link href="/book" className="w-full sm:w-auto">
               <Button
                 size="lg"
                 variant="outline"
-                className="uppercase tracking-widest text-sm bg-transparent !border-white !text-white hover:!bg-white hover:!text-[var(--color-primary)]"
+                className="w-full uppercase tracking-widest text-sm bg-transparent !border-white !text-white hover:!bg-white hover:!text-[var(--color-primary)]"
               >
                 Book As Guest
               </Button>
             </Link>
-            <Link href="/signup">
+            <Link href="/signup" className="w-full sm:w-auto">
               <Button
                 size="lg"
-                className="uppercase tracking-widest text-sm bg-white !text-[var(--color-primary)] hover:bg-white/90"
+                className="w-full uppercase tracking-widest text-sm bg-white !text-[var(--color-primary)] hover:bg-white/90"
               >
                 Create Free Account
               </Button>

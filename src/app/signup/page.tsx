@@ -68,9 +68,9 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="min-h-screen relative pt-32 pb-20 px-6">
+    <div className="min-h-screen relative pt-28 md:pt-32 pb-16 md:pb-20 px-4 sm:px-6">
       <FluidBackground />
-      <div className="relative z-10 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      <div className="relative z-10 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
         {/* Member perks — what they get from creating an account */}
         <div className="hidden md:block sticky top-32">
           <p className="text-xs uppercase tracking-[0.4em] text-[var(--color-primary)] mb-4">
@@ -121,15 +121,15 @@ export default function SignUpPage() {
 
         {/* Form */}
         <Card className="bg-white/90 backdrop-blur-md shadow-xl border-white/20">
-          <CardHeader className="text-center pb-2 pt-8">
-            <CardTitle className="text-2xl font-light uppercase tracking-widest text-[var(--color-primary)]">
+          <CardHeader className="text-center pb-2 pt-6 sm:pt-8">
+            <CardTitle className="text-xl sm:text-2xl font-light uppercase tracking-widest text-[var(--color-primary)]">
               Create Account
             </CardTitle>
             <p className="text-gray-500 text-sm mt-2">
               Free forever. Cancel anytime.
             </p>
           </CardHeader>
-          <CardContent className="p-8">
+          <CardContent className="p-5 sm:p-8">
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-2">

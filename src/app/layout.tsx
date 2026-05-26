@@ -1,8 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { ConditionalChrome } from "@/components/layout/ConditionalChrome";
 import AuthSessionProvider from "@/components/providers/SessionProvider";
 
 const geistSans = Geist({
@@ -14,6 +13,15 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+// Set a proper mobile viewport so pages don't render at desktop width
+// on phones, and disable horizontal user-scaling glitches.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#faf8f5",
+};
 
 export const metadata: Metadata = {
   title: "Indulge Salon & Spa | Richmond, VA — Nails, Hair, Waxing, Detox",
@@ -41,9 +49,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <AuthSessionProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <ConditionalChrome>{children}</ConditionalChrome>
         </AuthSessionProvider>
       </body>
     </html>

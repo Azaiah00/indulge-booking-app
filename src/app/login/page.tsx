@@ -57,19 +57,19 @@ function LoginContent() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative pt-20 pb-10">
+    <div className="min-h-screen flex items-center justify-center relative pt-24 pb-10">
       <FluidBackground />
-      <div className="relative z-10 w-full max-w-md px-6">
+      <div className="relative z-10 w-full max-w-md px-4 sm:px-6">
         <Card className="bg-white/90 backdrop-blur-md shadow-xl border-white/20">
-          <CardHeader className="text-center pb-2 pt-8">
-            <CardTitle className="text-2xl font-light uppercase tracking-widest text-[var(--color-primary)]">
+          <CardHeader className="text-center pb-2 pt-6 sm:pt-8">
+            <CardTitle className="text-xl sm:text-2xl font-light uppercase tracking-widest text-[var(--color-primary)]">
               Member Sign In
             </CardTitle>
             <p className="text-gray-500 text-sm mt-2">
               Manage your appointments and member perks
             </p>
           </CardHeader>
-          <CardContent className="p-8">
+          <CardContent className="p-5 sm:p-8">
             {justRegistered && (
               <p className="mb-4 text-sm text-green-700 bg-green-50 py-2 px-3 rounded-md">
                 Account created. Please sign in.
