@@ -30,10 +30,6 @@ const SERVICE_CATEGORIES = [
       "Herbally based body contouring wraps that tighten, tone and firm — see results in as little as 45 minutes.",
   },
   {
-    title: "Hair Services",
-    desc: "Cuts and styling for women, men, and children in a relaxing, professional setting.",
-  },
-  {
     title: "Gentlemen's Spa",
     desc: "Manicures, pedicures, and grooming services tailored for the modern gentleman.",
   },
