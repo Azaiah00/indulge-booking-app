@@ -27,9 +27,7 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-2xl font-bold tracking-widest uppercase text-[var(--color-primary)]">
-            Indulge
-          </span>
+          <img src="/images/logo.png" alt="Indulge Salon & Spa" className="h-10 md:h-12 w-auto object-contain" />
         </Link>
         
         <nav className="hidden md:flex items-center gap-8">

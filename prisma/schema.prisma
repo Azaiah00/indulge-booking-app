@@ -7,10 +7,14 @@ datasource db {
   provider = "postgresql"
 }
 
+// Users have an optional password (admin and members) and a role.
+// Guest bookings do NOT use this model. They store contact info on the Appointment.
 model User {
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
+  // Hashed password (bcrypt). Optional so we can also support providers later.
+  password      String?
   emailVerified DateTime?
   image         String?
   role          Role      @default(CLIENT)
@@ -36,12 +40,25 @@ model Service {
   updatedAt   DateTime      @updatedAt
 }
 
+// Appointment can be either:
+//  - linked to a User (member) via userId, OR
+//  - a guest booking with guestName/guestEmail/guestPhone filled in.
 model Appointment {
   id          String            @id @default(cuid())
-  userId      String
-  user        User              @relation(fields: [userId], references: [id])
-  serviceId   String
-  service     Service           @relation(fields: [serviceId], references: [id])
+
+  // Optional: set if a logged-in member booked this appointment.
+  userId      String?
+  user        User?             @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  // Guest contact info (filled in for guest bookings).
+  guestName   String?
+  guestEmail  String?
+  guestPhone  String?
+
+  // Service this appointment is for.
+  serviceId   String?
+  service     Service?          @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+
   startTime   DateTime
   endTime     DateTime
   status      AppointmentStatus @default(PENDING)

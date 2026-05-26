@@ -174,10 +174,12 @@ export default function Home() {
       {/* ABOUT EBONI */}
       <section id="about" className="py-32 px-6 md:px-12 bg-[#faf8f5]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div className="order-2 md:order-1 h-[600px] bg-[var(--color-primary)]/15 rounded-2xl overflow-hidden relative">
-            <div className="absolute inset-0 flex items-center justify-center text-[var(--color-primary)]/40 font-serif italic text-4xl">
-              Eboni Rufus
-            </div>
+          <div className="order-2 md:order-1 h-[600px] bg-[var(--color-primary)]/15 rounded-2xl overflow-hidden relative shadow-lg border border-black/5">
+            <img 
+              src="/images/eboni.png" 
+              alt="Eboni Rufus" 
+              className="absolute inset-0 w-full h-full object-cover object-center" 
+            />
           </div>
           <div className="order-1 md:order-2">
             <p className="text-xs uppercase tracking-[0.4em] text-[var(--color-primary)] mb-4">
