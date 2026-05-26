@@ -94,7 +94,7 @@ export default function Home() {
             className="text-lg md:text-xl text-[var(--color-foreground)]/80 mb-10 font-light max-w-2xl mx-auto"
           >
             Pampering the mind, body, and spirit. Professional nail, hair,
-            waxing, and detox services from Eboni Rufus and the Indulge team.
+            waxing, and detox services from Eboni Mayo and the Indulge team.
           </motion.p>
 
           <motion.div
@@ -177,7 +177,7 @@ export default function Home() {
           <div className="order-2 md:order-1 h-[600px] bg-[var(--color-primary)]/15 rounded-2xl overflow-hidden relative shadow-lg border border-black/5">
             <img 
               src="/images/eboni.png" 
-              alt="Eboni Rufus" 
+              alt="Eboni Mayo" 
               className="absolute inset-0 w-full h-full object-cover object-center" 
             />
           </div>
@@ -186,11 +186,11 @@ export default function Home() {
               Meet The Founder
             </p>
             <h2 className="text-3xl md:text-5xl font-light tracking-tight text-[var(--color-foreground)] mb-6 uppercase">
-              Eboni <span className="italic font-serif text-[var(--color-primary)]">Rufus</span>
+              Eboni <span className="italic font-serif text-[var(--color-primary)]">Mayo</span>
             </h2>
             <p className="text-[var(--color-foreground)]/80 mb-4 leading-relaxed text-lg font-light">
               Indulge Salon & Spa opened January 2005 under the dedicated efforts
-              of Eboni Rufus — former co-owner of His & Hers Nail Spa & Academy
+              of Eboni Mayo — former co-owner of His & Hers Nail Spa & Academy
               and a beauty professional with over 25 years of experience.
             </p>
             <p className="text-[var(--color-foreground)]/80 mb-8 leading-relaxed text-lg font-light">

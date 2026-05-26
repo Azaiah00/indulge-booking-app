@@ -18,11 +18,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Indulge Salon & Spa | Richmond, VA — Nails, Hair, Waxing, Detox",
   description:
-    "Indulge Salon & Spa in Richmond, VA. Founded by Eboni Rufus in 2005. Natural & artificial nails, waxing, hair cuts, gentlemen and kids services, and detox body wraps. Book online.",
+    "Indulge Salon & Spa in Richmond, VA. Founded by Eboni Mayo in 2005. Natural & artificial nails, waxing, hair cuts, gentlemen and kids services, and detox body wraps. Book online.",
   keywords: [
     "Indulge Salon and Spa",
     "Richmond VA nail salon",
-    "Eboni Rufus",
+    "Eboni Mayo",
     "nail technician Richmond",
     "waxing Richmond VA",
     "detox body wrap",

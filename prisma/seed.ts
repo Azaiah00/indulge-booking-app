@@ -1,5 +1,5 @@
 // Prisma seed script for Indulge Salon & Spa
-// Loads Eboni Rufus's service menu into the database.
+// Loads Eboni Mayo's service menu into the database.
 //
 // HOW TO RUN:
 //   npx tsx prisma/seed.ts

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-// Footer with real Indulge Salon & Spa info (Eboni Rufus, Richmond, VA)
+// Footer with real Indulge Salon & Spa info (Eboni Mayo, Richmond, VA)
 export function Footer() {
   return (
     <footer className="bg-[var(--color-primary)] text-white py-16 px-6 md:px-12">
@@ -9,7 +9,7 @@ export function Footer() {
         <div className="col-span-1 md:col-span-2">
           <img src="/images/logo.png" alt="Indulge Salon & Spa" className="h-12 w-auto object-contain mb-4 filter brightness-0 invert" />
           <p className="text-white/80 max-w-sm mb-4 leading-relaxed">
-            Founded in 2005 by Eboni Rufus, with over 25 years of professional
+            Founded in 2005 by Eboni Mayo, with over 25 years of professional
             experience in the beauty industry. Pampering the mind, body, and
             spirit of Richmond, VA.
           </p>

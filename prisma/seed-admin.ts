@@ -20,7 +20,7 @@ const ADMIN_EMAIL =
   process.env.ADMIN_EMAIL?.toLowerCase().trim() ||
   "eboni@indulgesalonandspa.com";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "IndulgeAdmin2026!";
-const ADMIN_NAME = process.env.ADMIN_NAME || "Eboni Rufus";
+const ADMIN_NAME = process.env.ADMIN_NAME || "Eboni Mayo";
 const ADMIN_PHONE = process.env.ADMIN_PHONE || "(804) 537-0525";
 
 async function main() {
