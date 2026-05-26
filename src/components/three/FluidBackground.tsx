@@ -1,7 +1,7 @@
 "use client";
 
+import React, { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
 function FluidMesh() {
@@ -95,9 +95,26 @@ function FluidMesh() {
   );
 }
 
+// Wrapper for the animated fluid canvas.
+// An inward radial mask fades the animation softly toward the edges so it
+// blends with the page's cream background instead of cutting off at hard
+// rectangular borders. Tweak the percentages below to change the size of
+// the "visible" center vs. the faded edges.
 export function FluidBackground() {
+  // Visible in the middle, fully transparent by the edges.
+  // (0%–35%) = fully opaque, (35%–95%) = soft fade, (95%+) = transparent.
+  const maskStyle = {
+    WebkitMaskImage:
+      "radial-gradient(ellipse at center, black 35%, transparent 95%)",
+    maskImage:
+      "radial-gradient(ellipse at center, black 35%, transparent 95%)",
+  } as React.CSSProperties;
+
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-60">
+    <div
+      className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-60"
+      style={maskStyle}
+    >
       <Canvas camera={{ position: [0, 0, 1] }}>
         <FluidMesh />
       </Canvas>
