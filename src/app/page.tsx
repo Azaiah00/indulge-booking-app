@@ -93,8 +93,8 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.6 }}
             className="text-lg md:text-xl text-[var(--color-foreground)]/80 mb-10 font-light max-w-2xl mx-auto"
           >
-            Pampering the mind, body, and spirit. Professional nail, hair,
-            waxing, and detox services from Eboni Mayo and the Indulge team.
+            Pampering the mind, body, and spirit. Professional nail, waxing,
+            and detox services from Eboni Mayo and the Indulge team.
           </motion.p>
 
           <motion.div
