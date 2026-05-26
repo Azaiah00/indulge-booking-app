@@ -82,3 +82,23 @@ model Blockout {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
+
+// Singleton row for salon-wide settings (business info, hours, booking rules).
+// Always use id = "default". Created on first access if missing.
+model SalonSettings {
+  id            String   @id @default("default")
+  salonName     String   @default("Indulge Salon & Spa")
+  tagline       String?  @default("Imagine. Inspire. Invigorate.")
+  address       String?  @default("7825 Midlothian Tpke")
+  city          String?  @default("Richmond")
+  state         String?  @default("VA")
+  zip           String?  @default("23235")
+  phone         String?  @default("(804) 537-0525")
+  email         String?  @default("indulgespa@msn.com")
+  bio           String?
+  openTime      String   @default("09:00")   // 24h HH:mm — booking window opens
+  closeTime     String   @default("17:00")   // 24h HH:mm — booking window closes
+  slotInterval  Int      @default(30)        // minutes between offered slots
+  cancelHours   Int      @default(24)        // min hours before appt to cancel
+  updatedAt     DateTime @updatedAt
+}

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { getSalonSettings } from "@/lib/salon-settings";
 import { startOfDay, endOfDay, addMinutes, isBefore, isAfter, format, parse } from "date-fns";
 
 export async function GET(req: Request) {
@@ -39,10 +40,12 @@ export async function GET(req: Request) {
       }
     });
 
-    // Business hours: 9:00 AM to 5:00 PM
+    // Business hours from admin settings (fallback: 9 AM – 5 PM, 30-min slots).
+    const salonSettings = await getSalonSettings();
     const allSlots: string[] = [];
-    let currentSlot = parse("09:00", "HH:mm", targetDate);
-    const endOfDayTime = parse("17:00", "HH:mm", targetDate);
+    let currentSlot = parse(salonSettings.openTime, "HH:mm", targetDate);
+    const endOfDayTime = parse(salonSettings.closeTime, "HH:mm", targetDate);
+    const slotStep = salonSettings.slotInterval;
 
     while (isBefore(currentSlot, endOfDayTime) || currentSlot.getTime() === endOfDayTime.getTime()) {
       const slotEnd = addMinutes(currentSlot, duration);
@@ -69,8 +72,8 @@ export async function GET(req: Request) {
         }
       }
 
-      // Increment by 30 mins
-      currentSlot = addMinutes(currentSlot, 30);
+      // Increment by configured slot interval (default 30 min).
+      currentSlot = addMinutes(currentSlot, slotStep);
     }
 
     return NextResponse.json({ availableSlots: allSlots });
