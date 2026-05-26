@@ -135,26 +135,6 @@ const services = [
     duration: 60,
   },
 
-  // HAIR
-  {
-    name: "Women's Hair Cut",
-    description: "Cut and style for women.",
-    price: 45.0,
-    duration: 60,
-  },
-  {
-    name: "Men's Hair Cut",
-    description: "Cut and style for men.",
-    price: 30.0,
-    duration: 30,
-  },
-  {
-    name: "Hair Wash & Style",
-    description: "Wash, condition, and style.",
-    price: 35.0,
-    duration: 45,
-  },
-
   // CHILDREN'S SPA (10 and under)
   {
     name: "Kid's Manicure",
@@ -168,16 +148,28 @@ const services = [
     price: 25.0,
     duration: 30,
   },
-  {
-    name: "Kid's Hair Cut",
-    description: "Hair cut for children 10 and under.",
-    price: 20.0,
-    duration: 30,
-  },
+];
+
+// Service names that should NOT be in the catalog (Eboni does not offer
+// hair services). We delete these from the DB on every seed run so old
+// rows from earlier seeds are cleaned up.
+const removedServiceNames = [
+  "Women's Hair Cut",
+  "Men's Hair Cut",
+  "Hair Wash & Style",
+  "Kid's Hair Cut",
 ];
 
 async function main() {
   console.log("Seeding services for Indulge Salon & Spa...");
+
+  // First, remove any retired services (e.g. hair services Eboni doesn't offer).
+  const deleted = await prisma.service.deleteMany({
+    where: { name: { in: removedServiceNames } },
+  });
+  if (deleted.count > 0) {
+    console.log(`Removed ${deleted.count} retired service(s).`);
+  }
 
   for (const svc of services) {
     // Upsert by name keeps the script safe to re-run.
