@@ -8,14 +8,16 @@ type Appointment = {
   startTime: Date;
   endTime: Date;
   status: string;
-  service: { name: string; duration: number };
-  user: { name: string | null; email: string | null };
+  service: { name: string; duration: number } | null;
+  user: { name: string | null; email: string | null } | null;
+  guestName?: string | null;
+  guestPhone?: string | null;
 };
 
 export function MasterCalendar({ appointments, blockouts }: { appointments: Appointment[], blockouts: any[] }) {
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  const startDate = startOfWeek(currentDate, { weekStarts: 1 });
+  const startDate = startOfWeek(currentDate, { weekStartsOn: 1 });
   const weekDays = Array.from({ length: 7 }).map((_, i) => addDays(startDate, i));
 
   const handleNextWeek = () => setCurrentDate(addWeeks(currentDate, 1));
@@ -57,8 +59,11 @@ export function MasterCalendar({ appointments, blockouts }: { appointments: Appo
                     {dayAppointments.map((app) => (
                     <div key={app.id} className="p-2 text-xs rounded border border-gray-100 bg-white shadow-sm flex flex-col gap-1">
                       <div className="font-semibold text-gray-900">{format(new Date(app.startTime), "h:mm a")}</div>
-                      <div className="text-gray-700 truncate">{app.service.name}</div>
-                      <div className="text-gray-500 truncate">{app.user.name || app.user.email}</div>
+                      <div className="text-gray-700 truncate">{app.service?.name ?? "Service"}</div>
+                      <div className="text-gray-500 truncate">
+                        {app.user?.name || app.user?.email || app.guestName || "Guest"}
+                        {app.guestPhone ? ` · ${app.guestPhone}` : ""}
+                      </div>
                       <div className={`mt-1 inline-block px-1.5 py-0.5 rounded text-[10px] font-medium w-max ${
                         app.status === 'CONFIRMED' ? 'bg-green-100 text-green-700' :
                         app.status === 'PENDING' ? 'bg-yellow-100 text-yellow-700' :

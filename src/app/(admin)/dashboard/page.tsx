@@ -26,7 +26,7 @@ export default async function AdminDashboard() {
   // Calculate today's revenue (from confirmed/completed appointments)
   const todaysRevenue = todaysAppointments
     .filter(app => app.status === "CONFIRMED" || app.status === "COMPLETED")
-    .reduce((total, app) => total + Number(app.service.price), 0);
+    .reduce((total, app) => total + Number(app.service?.price ?? 0), 0);
 
   // Fetch all pending requests across all dates
   const pendingRequestsCount = await prisma.appointment.count({
@@ -84,8 +84,11 @@ export default async function AdminDashboard() {
                       </div>
                     </div>
                     <div>
-                      <h4 className="font-medium text-gray-900">{app.service.name}</h4>
-                      <p className="text-sm text-gray-500">{app.user.name || app.user.email}</p>
+                      <h4 className="font-medium text-gray-900">{app.service?.name ?? "Service"}</h4>
+                      <p className="text-sm text-gray-500">
+                        {app.user?.name || app.user?.email || app.guestName || "Guest"}
+                        {app.guestPhone ? ` · ${app.guestPhone}` : ""}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">

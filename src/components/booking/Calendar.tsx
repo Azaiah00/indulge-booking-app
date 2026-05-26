@@ -39,7 +39,7 @@ export function Calendar({ serviceId, onSelectSlot }: CalendarProps) {
     fetchSlots();
   }, [selectedDate, serviceId]);
 
-  const startDate = startOfWeek(currentDate, { weekStarts: 1 });
+  const startDate = startOfWeek(currentDate, { weekStartsOn: 1 });
   const weekDays = Array.from({ length: 7 }).map((_, i) => addDays(startDate, i));
 
   const handleNextWeek = () => setCurrentDate(addWeeks(currentDate, 1));

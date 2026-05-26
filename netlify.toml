@@ -1,0 +1,6 @@
+# Netlify build settings for Next.js App Router (API routes, auth, Prisma).
+[build]
+  command = "npm run build"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

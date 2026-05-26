@@ -51,7 +51,7 @@ export default async function ClientPortal() {
             <Card key={app.id} className="flex flex-col sm:flex-row items-center justify-between p-6">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-1">
-                  <h3 className="text-lg font-medium text-gray-900">{app.service.name}</h3>
+                  <h3 className="text-lg font-medium text-gray-900">{app.service?.name ?? "Service"}</h3>
                   <span className={`text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold ${
                     app.status === 'CONFIRMED' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
                   }`}>
@@ -59,7 +59,9 @@ export default async function ClientPortal() {
                   </span>
                 </div>
                 <p className="text-gray-500 text-sm">{format(new Date(app.startTime), "MMMM d, yyyy 'at' h:mm a")}</p>
-                <p className="text-gray-500 text-sm mt-1">{app.service.duration} mins &bull; ${Number(app.service.price).toFixed(2)}</p>
+                <p className="text-gray-500 text-sm mt-1">
+                  {app.service?.duration ?? "—"} mins &bull; ${Number(app.service?.price ?? 0).toFixed(2)}
+                </p>
               </div>
               <div className="flex gap-3 mt-4 sm:mt-0 w-full sm:w-auto">
                 <form action={async () => { "use server"; await cancelAppointment(app.id); }} className="w-full sm:w-auto">
@@ -84,7 +86,7 @@ export default async function ClientPortal() {
             <Card key={app.id} className="p-4 bg-gray-50 border-transparent">
               <div className="flex justify-between items-center opacity-70">
                 <div>
-                  <h3 className="font-medium text-gray-900">{app.service.name}</h3>
+                  <h3 className="font-medium text-gray-900">{app.service?.name ?? "Service"}</h3>
                   <p className="text-sm text-gray-500">{format(new Date(app.startTime), "MMM d, yyyy")}</p>
                 </div>
                 <span className={`text-xs font-semibold uppercase ${

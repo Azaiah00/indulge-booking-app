@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
+import { useSession } from "next-auth/react";
 import { Calendar } from "@/components/booking/Calendar";
 import { FluidBackground } from "@/components/three/FluidBackground";
 import { Button } from "@/components/ui/Button";
@@ -9,10 +10,21 @@ import { Button } from "@/components/ui/Button";
 type Step = "SERVICE" | "DATE" | "CONFIRM";
 
 export default function BookingClient({ services }: { services: any[] }) {
+  const { data: session } = useSession();
   const [step, setStep] = useState<Step>("SERVICE");
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [selectedDateTime, setSelectedDateTime] = useState<{ date: Date, time: string } | null>(null);
+  const [clientName, setClientName] = useState("");
+  const [clientPhone, setClientPhone] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  // Pre-fill contact info for signed-in members when they reach confirm.
+  useEffect(() => {
+    if (session?.user?.name && !clientName) {
+      setClientName(session.user.name);
+    }
+  }, [session, clientName]);
 
   const handleServiceSelect = (id: string) => {
     setSelectedService(id);
@@ -26,6 +38,21 @@ export default function BookingClient({ services }: { services: any[] }) {
 
   const handleCheckout = async () => {
     if (!selectedService || !selectedDateTime) return;
+
+    const name = clientName.trim();
+    const phone = clientPhone.trim();
+
+    // Every booking needs a name and phone so Eboni can reach the client.
+    if (!name) {
+      setError("Please enter your name.");
+      return;
+    }
+    if (!phone) {
+      setError("Please enter your phone number.");
+      return;
+    }
+
+    setError(null);
     setLoading(true);
     try {
       const res = await fetch("/api/checkout", {
@@ -35,18 +62,19 @@ export default function BookingClient({ services }: { services: any[] }) {
           serviceId: selectedService,
           date: format(selectedDateTime.date, "yyyy-MM-dd"),
           time: selectedDateTime.time,
-          userId: "anonymous", // In a real app, you might want them to login first or pass email to checkout
+          guestName: name,
+          guestPhone: phone,
         })
       });
       const data = await res.json();
       if (data.url) {
         window.location.href = data.url;
       } else {
-        alert("Failed to initiate checkout");
+        setError(data.error || "Failed to initiate checkout.");
       }
     } catch (e) {
       console.error(e);
-      alert("Error initiating checkout");
+      setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -104,7 +132,7 @@ export default function BookingClient({ services }: { services: any[] }) {
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 bg-white p-8 rounded-xl border border-gray-100 shadow-sm max-w-2xl mx-auto">
             <h2 className="text-2xl font-light uppercase text-center mb-8">Confirm Details</h2>
             
-            <div className="space-y-6 mb-10">
+            <div className="space-y-6 mb-8">
               <div className="flex justify-between items-center border-b border-gray-100 pb-4">
                 <span className="text-gray-500 uppercase tracking-wider text-sm">Service</span>
                 <span className="font-medium text-gray-900">{services.find(s => s.id === selectedService)?.name}</span>
@@ -118,6 +146,50 @@ export default function BookingClient({ services }: { services: any[] }) {
                 <span className="font-medium text-gray-900">{selectedDateTime.time}</span>
               </div>
             </div>
+
+            {/* Contact info — required before payment so Eboni can reach the client. */}
+            <div className="space-y-4 mb-8">
+              <p className="text-sm text-gray-600 text-center">
+                Enter your contact details so we can confirm your appointment.
+              </p>
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-2">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  value={clientName}
+                  onChange={(e) => setClientName(e.target.value)}
+                  className="w-full px-4 py-3 rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/50 focus:border-[var(--color-primary)] transition-colors bg-white"
+                  placeholder="Your name"
+                  required
+                  autoComplete="name"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-2">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  value={clientPhone}
+                  onChange={(e) => setClientPhone(e.target.value)}
+                  className="w-full px-4 py-3 rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/50 focus:border-[var(--color-primary)] transition-colors bg-white"
+                  placeholder="(804) 555-0123"
+                  required
+                  autoComplete="tel"
+                />
+              </div>
+            </div>
+
+            {error && (
+              <p
+                className="mb-4 text-sm text-red-600 bg-red-50 py-2 px-3 rounded-md text-center"
+                role="alert"
+              >
+                {error}
+              </p>
+            )}
 
             <Button size="lg" className="w-full text-lg" onClick={handleCheckout} disabled={loading}>
               {loading ? "Processing..." : "Proceed to Payment"}

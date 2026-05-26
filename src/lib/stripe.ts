@@ -5,7 +5,7 @@ if (!process.env.STRIPE_SECRET_KEY) {
 }
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_mock", {
-  apiVersion: "2025-02-24.acacia", // Use the latest API version or an appropriate one
+  apiVersion: "2026-02-25.clover",
   appInfo: {
     name: "Indulge Salon & Spa",
     version: "0.1.0",
