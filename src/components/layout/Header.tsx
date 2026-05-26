@@ -33,16 +33,18 @@ export function Header() {
         </Link>
         
         <nav className="hidden md:flex items-center gap-8">
-          <Link href="#services" className="text-sm uppercase tracking-wider hover:text-[var(--color-primary)] transition-colors">Services</Link>
-          <Link href="#gallery" className="text-sm uppercase tracking-wider hover:text-[var(--color-primary)] transition-colors">Gallery</Link>
-          <Link href="#about" className="text-sm uppercase tracking-wider hover:text-[var(--color-primary)] transition-colors">About</Link>
+          <Link href="/#services" className="text-sm uppercase tracking-wider hover:text-[var(--color-primary)] transition-colors">Services</Link>
+          <Link href="/#about" className="text-sm uppercase tracking-wider hover:text-[var(--color-primary)] transition-colors">About</Link>
+          <Link href="/book" className="text-sm uppercase tracking-wider hover:text-[var(--color-primary)] transition-colors">Book</Link>
         </nav>
 
         <div className="flex items-center gap-4">
           <Link href="/login" className="hidden sm:block text-sm uppercase tracking-wider hover:text-[var(--color-primary)] transition-colors">
             Sign In
           </Link>
-          <Button variant="primary" size="sm">Book Now</Button>
+          <Link href="/book">
+            <Button variant="primary" size="sm">Book Now</Button>
+          </Link>
         </div>
       </div>
     </header>
