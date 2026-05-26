@@ -5,8 +5,8 @@ import { format, startOfWeek, addDays, addWeeks, subWeeks, isSameDay } from "dat
 
 type Appointment = {
   id: string;
-  startTime: Date;
-  endTime: Date;
+  startTime: string;
+  endTime: string;
   status: string;
   service: { name: string; duration: number } | null;
   user: { name: string | null; email: string | null } | null;
@@ -14,7 +14,20 @@ type Appointment = {
   guestPhone?: string | null;
 };
 
-export function MasterCalendar({ appointments, blockouts }: { appointments: Appointment[], blockouts: any[] }) {
+type Blockout = {
+  id: string;
+  title: string;
+  startTime: string;
+  endTime: string;
+};
+
+export function MasterCalendar({
+  appointments,
+  blockouts,
+}: {
+  appointments: Appointment[];
+  blockouts: Blockout[];
+}) {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const startDate = startOfWeek(currentDate, { weekStartsOn: 1 });
@@ -50,7 +63,7 @@ export function MasterCalendar({ appointments, blockouts }: { appointments: Appo
                   <div className="text-xs text-gray-400 text-center py-4">No Bookings</div>
                 ) : (
                   <>
-                    {dayBlockouts.map((b: any) => (
+                    {dayBlockouts.map((b) => (
                       <div key={b.id} className="p-2 text-xs rounded border border-red-100 bg-red-50 shadow-sm flex flex-col gap-1">
                         <div className="font-semibold text-red-900">{format(new Date(b.startTime), "h:mm a")} - {format(new Date(b.endTime), "h:mm a")}</div>
                         <div className="text-red-700 font-medium">Blocked: {b.title}</div>
