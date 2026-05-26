@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, LayoutDashboard, Calendar, Briefcase, Ban, Settings } from "lucide-react";
+import { Menu, X, LayoutDashboard, Calendar, Briefcase, Ban, Settings, Home } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -64,11 +64,11 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
       {/* Sidebar (drawer on mobile, static on desktop) */}
       <aside
         className={cn(
-          "fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 transform transition-transform duration-200 ease-in-out",
+          "fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 transform transition-transform duration-200 ease-in-out flex flex-col",
           open ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         )}
       >
-        <div className="p-6 flex items-center justify-between">
+        <div className="p-6 flex items-center justify-between shrink-0">
           <h2 className="text-xl font-bold tracking-widest uppercase text-[var(--color-primary)]">
             Admin Panel
           </h2>
@@ -82,7 +82,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
           </button>
         </div>
 
-        <nav className="mt-2 px-2">
+        <nav className="px-2 flex-1 overflow-y-auto">
           {NAV.map((item) => {
             const active =
               pathname === item.href ||
@@ -105,6 +105,16 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
             );
           })}
         </nav>
+
+        <div className="p-4 border-t border-gray-100 shrink-0">
+          <Link
+            href="/"
+            className="flex items-center gap-3 py-3 px-4 rounded-md text-sm uppercase tracking-wider transition-colors text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+          >
+            <Home className="w-4 h-4 shrink-0" />
+            <span>Return to Site</span>
+          </Link>
+        </div>
       </aside>
 
       {/* Main content area */}
